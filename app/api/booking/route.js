@@ -19,7 +19,7 @@ export async function POST(request) {
 
   // TODO: replace with real delivery — e.g. send to WhatsApp Business API,
   // email via nodemailer/Resend, or write to a database / Google Sheet.
-  console.log("New booking request:", data);
+  // console.log("New booking request:", data);
 
   return NextResponse.json({ ok: true });
 }

@@ -19,7 +19,7 @@ export async function POST(request) {
 
   // TODO: replace with real delivery — e.g. send to WhatsApp Business API,
   // email via nodemailer/Resend, or write to a database / Google Sheet.
-  console.log("New inquiry:", data);
+  // console.log("New inquiry:", data);
 
   return NextResponse.json({ ok: true });
 }
