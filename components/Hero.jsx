@@ -46,6 +46,8 @@ export default function Hero() {
 
         <div className="md:col-span-5 lg:col-span-6 relative">
           <div className="relative aspect-[4/5] max-w-md mx-auto md:max-w-none rounded-sm overflow-hidden border border-stone-200">
+            {/* This fixed container intentionally controls the hero image footprint. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/1.jpg"
               alt="Barber giving a precise fade haircut in a studio chair"

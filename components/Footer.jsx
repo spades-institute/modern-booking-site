@@ -36,7 +36,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-3 text-sm text-stone-200/80">
             <Phone className="shrink-0" />
-            <a href="tel:+2347030000000" className="underline-fade">+234 906 475 3818</a>
+            <a href="tel:+2349064753818" className="underline-fade">+234 906 475 3818</a>
           </div>
           <div className="flex items-center gap-3 text-sm text-stone-200/80 mt-3">
             <Mail className="shrink-0" />
@@ -58,7 +58,7 @@ export default function Footer() {
 
       <div className="container-content py-6 border-t border-stone-700/40 flex flex-col sm:flex-row justify-between gap-2 text-xs text-stone-400">
         <p>© {new Date().getFullYear()} AB ~ Cuts.</p>
-        <p>Made for sharp work in Abuja.</p>
+        <p>Built by SpadesHub.</p>
       </div>
     </footer>
   );

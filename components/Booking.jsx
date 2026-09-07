@@ -1,8 +1,6 @@
 "use client";
 
-import { forwardRef, useRef, useState } from "react";
-
-
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { SERVICE_OPTIONS } from "@/lib/contact/constants.js";
 import { Check, Clock, Mail, Phone } from "./Icons";
 
@@ -38,7 +36,11 @@ export default function Booking() {
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [location, setLocation] = useState("studio");
-  const startedAt = useRef(Date.now());
+  const startedAt = useRef(null);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   function selectTab(nextTab) {
     if (status === "loading") return;
@@ -65,7 +67,7 @@ export default function Booking() {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 25_000);
     const payload = Object.fromEntries(new FormData(formElement));
-    payload.startedAt = String(startedAt.current);
+    payload.startedAt = String(startedAt.current ?? Date.now());
 
     setStatus("loading");
     setErrorMessage("");

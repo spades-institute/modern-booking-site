@@ -32,21 +32,21 @@ npm start
   `Services` (in-studio/at-home pricing toggle), `HowItWorks`, `Gallery`,
   `Booking` (booking + inquiry form, tabbed), `FAQ`, `Footer`.
 - **Booking flow**: `Booking.jsx` posts JSON to `/api/booking` or
-  `/api/inquiry`. Both routes (`app/api/*/route.js`) validate the payload and
-  currently just `console.log` it — wire in real delivery before going live
-  (see below).
+  `/api/inquiry`. Both routes validate and rate-limit the payload before
+  sending a safely escaped email through the configured SMTP account.
+- **Discovery metadata**: the root layout includes descriptive search and
+  social metadata plus `HairSalon` structured data based only on the business
+  details shown on the site.
 - **Icons**: hand-set inline SVGs in `components/Icons.jsx`, no icon package
   dependency.
 
 ## Before you launch
 
-1. **Connect the booking form to something real.** Right now `route.js` in
-   both API folders logs the submission and returns success. Swap the
-   `TODO` for one (or more) of:
-   - Email via [Resend](https://resend.com) or `nodemailer`
-   - A WhatsApp Business API call, since the copy promises WhatsApp
-     confirmation
-   - A row written to a database, Airtable, or Google Sheet
+1. **Configure booking email delivery.** Copy `.env.example` to a local
+   environment file and replace every placeholder. `APP_ORIGIN` must be the
+   public HTTPS origin. Set `TRUSTED_PROXY_IP_HEADER` only to an IP header that
+   your hosting proxy overwrites; this is `x-forwarded-for` on many managed
+   hosts. Never commit a populated environment file.
 2. **Replace placeholder content.**
    - Phone, email, and service area details in `Nav.jsx`, `Booking.jsx`, and
      `Footer.jsx`
@@ -62,6 +62,18 @@ npm start
    studio address should be pinpointed (Google Maps embed or a static image).
 5. **Currency**: pricing has been updated to NGN for Abuja market rates, with
    a small logistics allowance factored into home visits.
+
+## Security notes
+
+- Form requests require an allowed browser origin, JSON content type, valid
+  bounded fields, and a body no larger than 16 KB.
+- The hidden bot field and request throttling reduce automated form abuse.
+  Throttling is held in process memory, so multi-instance deployments should
+  use a shared rate-limit store at the hosting edge for consistent enforcement.
+- Mail delivery uses TLS 1.2 or newer, fixed sender/recipient addresses, and
+  disables URL and file access in Nodemailer.
+- Production responses include clickjacking, MIME sniffing, referrer,
+  permissions, content security, and HTTPS transport protections.
 
 ## Structure
 

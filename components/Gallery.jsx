@@ -30,6 +30,7 @@ export default function Gallery() {
                 i % 3 === 0 ? "row-span-2 aspect-[7/9]" : "aspect-[7/5]"
               }`}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img.src}
                 alt={img.alt}
