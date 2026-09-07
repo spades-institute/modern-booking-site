@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-3 text-sm text-stone-200/80 mt-3">
             <Mail className="shrink-0" />
-            <a href="mailto:hello@abcuts.ng" className="underline-fade">hello@abcuts.ng</a>
+            <a href="mailto:yusufabel42@gmail.com" className="underline-fade">yusufabel42@gmail.com</a>
           </div>
         </div>
 
